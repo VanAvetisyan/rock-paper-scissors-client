@@ -1,0 +1,12 @@
+<h1>Rock paper scissors game</h1>
+
+<h3>Choose one!</h3>
+<div>
+    <button pButton pRipple type="button" label="Rock" class="p-button-raised" (click)="userPickedChoose('rock')"></button>
+    <button pButton pRipple type="button" label="Paper" class="p-button-raised" (click)="userPickedChoose('paper')"></button>
+    <button pButton pRipple type="button" label="Scissors" class="p-button-raised" (click)="userPickedChoose('scissors')"></button>
+</div>
+
+<p>You picked: {{userPickLabel}}</p>
+<p>Computer picked: {{computerPickLabel}}</p>
+<p>{{resultLabel}}</p>
