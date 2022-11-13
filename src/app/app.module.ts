@@ -7,15 +7,9 @@ import { ButtonModule } from 'primeng/button';
 import { ImageModule } from 'primeng/image';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    ButtonModule,
-    ImageModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, ButtonModule, ImageModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

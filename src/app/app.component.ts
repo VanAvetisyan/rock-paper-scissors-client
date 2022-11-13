@@ -5,7 +5,7 @@ import { chooseElements } from './choose-elements';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'rock-paper-scissors-client';
@@ -34,13 +34,14 @@ export class AppComponent {
     let randomPick = this.calculateRandomComputerChoose();
 
     const userPickIndex: number = Object.keys(chooseElements).indexOf(userPick);
-    const randomPickIndex: number = Object.keys(chooseElements).indexOf(randomPick);
+    const randomPickIndex: number =
+      Object.keys(chooseElements).indexOf(randomPick);
 
     this.userPickLabel = userPick;
     this.computerPickLabel = randomPick;
 
     let result = this.doesUserWin(userPickIndex, randomPickIndex);
-    if(result === 1) {
+    if (result === 1) {
       this.resultLabel = 'You Win :)';
     } else if (result === 2) {
       this.resultLabel = 'You Lose :(';
@@ -50,9 +51,11 @@ export class AppComponent {
   }
 
   doesUserWin(userPickIndex: number, randomPickIndex: number): number {
-    if(userPickIndex === randomPickIndex)
-      return 0;
-    if(userPickIndex === 0 && randomPickIndex === 2 || userPickIndex > randomPickIndex)
+    if (userPickIndex === randomPickIndex) return 0;
+    if (
+      (userPickIndex === 0 && randomPickIndex === 2) ||
+      userPickIndex > randomPickIndex
+    )
       return 1;
     return 2;
   }

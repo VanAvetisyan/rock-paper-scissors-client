@@ -1,5 +1,5 @@
 export enum chooseElements {
-    rock = 'rock', 
-    paper = 'paper', 
-    scissors = 'scissors'
+  rock = 'rock',
+  paper = 'paper',
+  scissors = 'scissors',
 }
