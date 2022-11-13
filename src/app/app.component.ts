@@ -39,6 +39,8 @@ export class AppComponent {
 
   soundOff: boolean = true;
 
+  pickButtonsDisabled = false;
+
   reset() {
     this.userChoose = '';
     this.computerChoose = '';
@@ -69,6 +71,8 @@ export class AppComponent {
     if (!this.soundOff) {
       this.playAudioEffect();
     }
+
+    this.pickButtonsDisabled = true;
     setTimeout(() => {
       this.userPickedChooseAfterAnimation(userPick);
     }, 2000);
@@ -110,6 +114,8 @@ export class AppComponent {
     this.userScoreValue = Math.round(
       (this.userPoints * 100) / this.numberOfGames
     );
+
+    this.pickButtonsDisabled = false;
   }
 
   doesUserWin(userPick: string, randomPick: string): number {
