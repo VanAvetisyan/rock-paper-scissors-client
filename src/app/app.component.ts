@@ -37,6 +37,8 @@ export class AppComponent {
   userWinner: boolean = false;
   computerWinner: boolean = false;
 
+  soundOff: boolean = true;
+
   reset() {
     this.userChoose = '';
     this.computerChoose = '';
@@ -64,6 +66,9 @@ export class AppComponent {
     this.runAnimationRight = true;
     this.userPickImage = '../assets/rps/rock-user.png';
     this.computerPickImage = '../assets/rps/rock-enemy.png';
+    if (!this.soundOff) {
+      this.playAudioEffect();
+    }
     setTimeout(() => {
       this.userPickedChooseAfterAnimation(userPick);
     }, 2000);
@@ -117,5 +122,16 @@ export class AppComponent {
       return 1;
 
     return 2;
+  }
+
+  playAudioEffect(): void {
+    let audio = new Audio();
+    audio.src = '../assets/sound-effects/rps-effect.mp3';
+    audio.load();
+    audio.play();
+  }
+
+  soundSwitch(): void {
+    this.soundOff = !this.soundOff;
   }
 }

@@ -20,7 +20,15 @@
   >
     {{ 'header.title' | translate }}
   </p>
-  <p-button icon="pi pi-refresh" (click)="reset()"></p-button>
+  <div>
+    <p-button
+      (click)="soundSwitch()"
+      style="margin-right: 1em"
+      [icon]="soundOff ? 'pi pi-volume-off' : 'pi pi-volume-up'"
+      [styleClass]="soundOff ? 'p-button-danger' : 'p-button-success'"
+    ></p-button>
+    <p-button icon="pi pi-refresh" (click)="reset()"></p-button>
+  </div>
 </div>
 
 <div style="display: flex; justify-content: center">
