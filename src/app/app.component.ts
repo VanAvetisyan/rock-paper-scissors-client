@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ImageModule } from 'primeng/image';
 import { chooseElements } from './choose-elements';
 
-import { TranslateService } from '../../node_modules/@ngx-translate/core'
+import { TranslateService } from '../../node_modules/@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
