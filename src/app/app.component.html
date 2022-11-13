@@ -1,33 +1,133 @@
-<h1>{{ 'header.title' | translate }}</h1>
-
-<h3>Choose one!</h3>
-<div>
-  <button
-    pButton
-    pRipple
-    type="button"
-    label="Rock"
-    class="p-button-raised"
-    (click)="userPickedChoose('rock')"
-  ></button>
-  <button
-    pButton
-    pRipple
-    type="button"
-    label="Paper"
-    class="p-button-raised"
-    (click)="userPickedChoose('paper')"
-  ></button>
-  <button
-    pButton
-    pRipple
-    type="button"
-    label="Scissors"
-    class="p-button-raised"
-    (click)="userPickedChoose('scissors')"
-  ></button>
+<div
+  style="
+    margin: 0px;
+    padding: 0.5em;
+    background-color: #2d3648;
+    min-height: 3em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  "
+>
+  <p
+    style="
+      margin-bottom: 0em;
+      margin-top: 0em;
+      font-size: 20px;
+      font-weight: bold;
+    "
+  >
+    {{ 'header.title' | translate }}
+  </p>
+  <p-button icon="pi pi-refresh" (click)="reset()"></p-button>
 </div>
 
-<p>You picked: {{ userPickLabel }}</p>
-<p>Computer picked: {{ computerPickLabel }}</p>
-<p>{{ resultLabel }}</p>
+<div style="display: flex; justify-content: center">
+  <div
+    style="
+      padding: 1em;
+      width: 50vw;
+      background-color: #2d3648;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <div style="min-width: 100%; display: flex">
+      <p-progressBar
+        style="min-width=100%"
+        [value]="userScoreValue"
+      ></p-progressBar>
+    </div>
+    <div style="min-width: 100%; display: flex; margin-top: 1em">
+      <div style="flex: 1 1 auto; text-align: center">
+        Your Score: {{ userPoints }}
+      </div>
+      <div style="flex: 1 1 auto; text-align: center">
+        Computer Score: {{ computerPoints }}
+      </div>
+    </div>
+    <div style="min-width: 100%; display: flex; min-height: 15em">
+      <div
+        style="
+          flex: 1 1 auto;
+          width: 50%;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+        "
+      >
+        <img
+          [ngClass]="{
+            winner: userWinner,
+            'run-animation-left': runAnimationLeft
+          }"
+          [src]="userPickImage"
+          height="200px"
+          style="align-self: center"
+        />
+      </div>
+      <div
+        style="
+          flex: 1 1 auto;
+          width: 50%;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+        "
+      >
+        <img
+          [ngClass]="{
+            winner: computerWinner,
+            'run-animation-right': runAnimationRight
+          }"
+          [src]="computerPickImage"
+          height="200px;"
+          style="align-self: center"
+        />
+      </div>
+    </div>
+    <div
+      style="
+        min-width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+      "
+    >
+      <div style="flex: 1 1 auto; width: 30%; text-align: left">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Rock"
+          class="p-button-raised"
+          (click)="userPickedChoose('rock')"
+        ></button>
+      </div>
+      <div style="flex: 1 1 auto; width: 30%; text-align: center">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Paper"
+          class="p-button-raised"
+          (click)="userPickedChoose('paper')"
+        ></button>
+      </div>
+      <div style="flex: 1 1 auto; width: 30%; text-align: right">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Scissors"
+          class="p-button-raised"
+          (click)="userPickedChoose('scissors')"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>

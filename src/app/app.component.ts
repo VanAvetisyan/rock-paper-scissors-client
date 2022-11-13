@@ -24,13 +24,32 @@ export class AppComponent {
 
   resultLabel: string = '';
   userPickLabel: string = '';
+  userPickImage: string = '../assets/rps/rock-user.png';
   computerPickLabel: string = '';
+  computerPickImage: string = '../assets/rps/rock-enemy.png';
+
+  numberOfGames = 0;
+  userScoreValue: number = 0;
+
+  runAnimationLeft: boolean = false;
+  runAnimationRight: boolean = false;
+
+  userWinner: boolean = false;
+  computerWinner: boolean = false;
 
   reset() {
     this.userChoose = '';
     this.computerChoose = '';
     this.userPoints = 0;
     this.computerPoints = 0;
+    this.numberOfGames = 0;
+    this.userScoreValue = 0;
+    this.userPickLabel = '';
+    this.userPickImage = '../assets/rps/rock-user.png';
+    this.computerPickLabel = '';
+    this.computerPickImage = '../assets/rps/rock-enemy.png';
+    this.userWinner = false;
+    this.computerWinner = false;
   }
 
   calculateRandomComputerChoose(): string {
@@ -39,6 +58,20 @@ export class AppComponent {
   }
 
   userPickedChoose(userPick: string) {
+    this.userWinner = false;
+    this.computerWinner = false;
+    this.runAnimationLeft = true;
+    this.runAnimationRight = true;
+    this.userPickImage = '../assets/rps/rock-user.png';
+    this.computerPickImage = '../assets/rps/rock-enemy.png';
+    setTimeout(() => {
+      this.userPickedChooseAfterAnimation(userPick);
+    }, 2000);
+  }
+
+  userPickedChooseAfterAnimation(userPick: string) {
+    this.runAnimationLeft = false;
+    this.runAnimationRight = false;
     let randomPick = this.calculateRandomComputerChoose();
 
     const userPickIndex: number = Object.keys(chooseElements).indexOf(userPick);
@@ -46,25 +79,43 @@ export class AppComponent {
       Object.keys(chooseElements).indexOf(randomPick);
 
     this.userPickLabel = userPick;
+    this.userPickImage = '../assets/rps/' + userPick + '-user.png';
     this.computerPickLabel = randomPick;
+    this.computerPickImage = '../assets/rps/' + randomPick + '-enemy.png';
 
-    let result = this.doesUserWin(userPickIndex, randomPickIndex);
+    let result = this.doesUserWin(userPick, randomPick);
     if (result === 1) {
       this.resultLabel = 'You Win :)';
+      this.numberOfGames++;
+      this.userPoints++;
+      this.userWinner = true;
+      this.computerWinner = false;
     } else if (result === 2) {
       this.resultLabel = 'You Lose :(';
+      this.numberOfGames++;
+      this.computerPoints++;
+      this.userWinner = false;
+      this.computerWinner = true;
     } else {
       this.resultLabel = 'Tie :|';
+      this.userWinner = false;
+      this.computerWinner = false;
     }
+
+    this.userScoreValue = Math.round(
+      (this.userPoints * 100) / this.numberOfGames
+    );
   }
 
-  doesUserWin(userPickIndex: number, randomPickIndex: number): number {
-    if (userPickIndex === randomPickIndex) return 0;
+  doesUserWin(userPick: string, randomPick: string): number {
+    if (userPick === randomPick) return 0;
     if (
-      (userPickIndex === 0 && randomPickIndex === 2) ||
-      userPickIndex > randomPickIndex
+      (userPick === 'rock' && randomPick === 'scissors') ||
+      (userPick === 'paper' && randomPick === 'rock') ||
+      (userPick === 'scissors' && randomPick === 'paper')
     )
       return 1;
+
     return 2;
   }
 }
