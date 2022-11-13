@@ -6,9 +6,28 @@ import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
 import { ImageModule } from 'primeng/image';
 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http'
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, ButtonModule, ImageModule],
+  imports: [
+    BrowserModule,
+    ButtonModule,
+    ImageModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+  })],
   providers: [],
   bootstrap: [AppComponent],
 })

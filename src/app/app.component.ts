@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ImageModule } from 'primeng/image';
 import { chooseElements } from './choose-elements';
 
+import { TranslateService } from '../../node_modules/@ngx-translate/core'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +11,12 @@ import { chooseElements } from './choose-elements';
 })
 export class AppComponent {
   title = 'rock-paper-scissors-client';
+
+  constructor(public translate: TranslateService) {
+    this.translate.addLangs(['es', 'en', 'de']);
+    this.translate.setDefaultLang('en');
+  }
+
   userChoose: string = '';
   computerChoose: string = '';
   userPoints: number = 0;
