@@ -1,0 +1,14 @@
+<div class="pick-button-group">
+  <div *ngFor="let pickElement of pickElementsList | keyvalue: originalOrder" class="pick-button">
+    <button
+      pButton
+      pRipple
+      type="button"
+      class="p-button-raised"
+      [disabled]="isDisabled"
+      (click)="buttonPicked(pickElement.value)"
+    >
+      {{ 'buttons.' + pickElement.value | translate }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="game-menu">
+  <!--<p class="game-menu-title">
+    {{ 'header.title' | translate }}
+  </p>-->
+  <div>
+    <p-button icon="pi pi-refresh" (click)="reset()"></p-button>
+  </div>
+  <div>
+    <p-button
+      (click)="soundSwitch()"
+      [icon]="soundOff ? 'pi pi-volume-off' : 'pi pi-volume-up'"
+      [styleClass]="soundOff ? 'p-button-danger' : 'p-button-success'"
+    >
+    </p-button>
+  </div>
+</div>

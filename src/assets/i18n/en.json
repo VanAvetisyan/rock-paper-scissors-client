@@ -1,5 +1,15 @@
 {
     "header": {
-        "title": "Rock Paper Scissors"
+      "title": "Rock Paper Scissors"
+    },
+    "buttons": {
+      "rock": "Rock",
+      "paper": "Paper",
+      "scissors": "Scissors"
+    },
+    "score": {
+      "user": "User",
+      "enemy": "Enemy",
+      "score": "Score"
     }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ImageModule } from 'primeng/image';
-import { chooseElements } from './choose-elements';
+import { PickElements } from './choose-elements';
 
 import { TranslateService } from '../../node_modules/@ngx-translate/core';
 
@@ -58,7 +58,7 @@ export class AppComponent {
 
   calculateRandomComputerChoose(): string {
     let randomIndex = Math.floor(Math.random() * 3);
-    return Object.values(chooseElements)[randomIndex].toString();
+    return Object.values(PickElements)[randomIndex].toString();
   }
 
   userPickedChoose(userPick: string) {
@@ -83,9 +83,8 @@ export class AppComponent {
     this.runAnimationRight = false;
     let randomPick = this.calculateRandomComputerChoose();
 
-    const userPickIndex: number = Object.keys(chooseElements).indexOf(userPick);
-    const randomPickIndex: number =
-      Object.keys(chooseElements).indexOf(randomPick);
+    const userPickIndex: number = Object.keys(PickElements).indexOf(userPick);
+    const randomPickIndex: number = Object.keys(PickElements).indexOf(randomPick);
 
     this.userPickLabel = userPick;
     this.userPickImage = '../assets/rps/' + userPick + '-user.png';
@@ -111,9 +110,7 @@ export class AppComponent {
       this.computerWinner = false;
     }
 
-    this.userScoreValue = Math.round(
-      (this.userPoints * 100) / this.numberOfGames
-    );
+    this.userScoreValue = Math.round((this.userPoints * 100) / this.numberOfGames);
 
     this.pickButtonsDisabled = false;
   }

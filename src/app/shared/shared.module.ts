@@ -7,9 +7,18 @@ import { ButtonModule } from 'primeng/button';
 import { ImageModule } from 'primeng/image';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToolbarModule } from 'primeng/toolbar';
+import { RpsButtonPickGroupComponent } from './rps-button-pick-group/rps-button-pick-group.component';
+import { RpsScoreComponent } from './rps-score/rps-score.component';
+import { RpsHandViewComponent } from './rps-hand-view/rps-hand-view.component';
+import { RpsMenuComponent } from './rps-menu/rps-menu.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    RpsButtonPickGroupComponent,
+    RpsScoreComponent,
+    RpsHandViewComponent,
+    RpsMenuComponent,
+  ],
   imports: [
     CommonModule,
     TranslateModule,
@@ -29,6 +38,10 @@ import { ToolbarModule } from 'primeng/toolbar';
     ToolbarModule,
     ProgressBarModule,
     HttpClientModule,
+    RpsButtonPickGroupComponent,
+    RpsScoreComponent,
+    RpsHandViewComponent,
+    RpsMenuComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
