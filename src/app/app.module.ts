@@ -1,16 +1,13 @@
-import { ToolbarModule } from 'primeng/toolbar';
+import { GameModule } from './game/game.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { ButtonModule } from 'primeng/button';
-import { ImageModule } from 'primeng/image';
-import { ProgressBarModule } from 'primeng/progressbar';
-
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { CoreModule } from './core/core.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -19,12 +16,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    CoreModule,
     BrowserModule,
-    ButtonModule,
-    ImageModule,
-    ToolbarModule,
-    ProgressBarModule,
     HttpClientModule,
+    GameModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

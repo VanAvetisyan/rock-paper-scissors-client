@@ -1,0 +1,35 @@
+@keyframes left-hand-animation {
+  0%   {transform: rotate(0deg);}
+  15%   {transform: rotate(20deg);}
+  30%   {transform: rotate(-20deg);}
+  45%   {transform: rotate(20deg);}
+  60%   {transform: rotate(-20deg);}
+  75%   {transform: rotate(20deg);}
+  90%   {transform: rotate(-20deg);}
+  100%   {transform: rotate(0deg);}
+}
+
+@keyframes right-hand-animation {
+  0%   {transform: rotate(0deg);}
+  15%   {transform: rotate(-20deg);}
+  30%   {transform: rotate(20deg);}
+  45%   {transform: rotate(-20deg);}
+  60%   {transform: rotate(20deg);}
+  75%   {transform: rotate(-20deg);}
+  90%   {transform: rotate(20deg);}
+  100%   {transform: rotate(0deg);}
+}
+
+.run-animation-left {
+  animation-name: left-hand-animation;
+  animation-duration: 2s;
+}
+
+.run-animation-right {
+  animation-name: right-hand-animation;
+  animation-duration: 2s;
+}
+
+.winner {
+  filter: invert(100%);
+}
