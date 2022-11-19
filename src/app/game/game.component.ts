@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PickElements } from '../choose-elements';
 
@@ -7,10 +7,18 @@ import { PickElements } from '../choose-elements';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
-export class GameComponent {
+export class GameComponent implements OnInit {
   constructor(public translate: TranslateService) {
     this.translate.addLangs(['es', 'en', 'de']);
     this.translate.setDefaultLang('en');
+  }
+
+  ngOnInit(): void {
+    this.soundOff = localStorage.getItem('soundValue') === 'off' ? true : false;
+  }
+
+  getData() {
+    return localStorage.getItem('myData');
   }
 
   userChoose: string = '';
@@ -132,5 +140,6 @@ export class GameComponent {
 
   soundSwitch(): void {
     this.soundOff = !this.soundOff;
+    localStorage.setItem('soundValue', this.soundOff ? 'off' : 'on');
   }
 }
