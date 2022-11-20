@@ -1,0 +1,7 @@
+.angular
+.git
+node_modules
+src/assets
+.idea/
+dist
+coverage

@@ -1,0 +1,29 @@
+.game-board-container {
+  display: flex;
+  justify-content: center;
+}
+
+.game-board {
+  min-width: 700px;
+  width: 50vw;
+  background-color: #2d3648;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.game {
+  display: flex;
+}
+
+.game-area {
+  flex: 1 1 auto;
+  width: 50%;
+}
+
+.hand-container {
+  flex: 1 1 auto;
+  width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}

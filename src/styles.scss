@@ -1,0 +1,21 @@
+@import './color-variables.scss';
+
+html {
+    background-color: $avi-blue-main; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right, $avi-blue-main, $avi-blue-secondary);
+    height: 100%;
+    margin: 0;
+    color: $avi-white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0px;
+}
+
+p-progressbar.p-element {
+  min-width: 100%;
+}
+.p-progressbar-label {
+  display: none !important;
+}

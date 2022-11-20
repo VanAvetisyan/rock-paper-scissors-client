@@ -1,0 +1,37 @@
+<app-rps-menu
+  [soundOff]="soundOff"
+  (resetEvent)="reset()"
+  (soundSwitchEvent)="soundSwitch()"
+></app-rps-menu>
+
+<div class="game-board-container">
+  <div class="game-board">
+    <div>
+      <p-progressBar [value]="scoreValue"></p-progressBar>
+    </div>
+    <div class="game">
+      <div class="game-area">
+        <app-rps-score [isUser]="true" [scoreValue]="userPoints"></app-rps-score>
+        <app-rps-hand-view
+          [isUser]="true"
+          [isWinner]="userWinner"
+          [runUserAnimation]="runAnimationLeft"
+          [pickedImage]="userPickImage"
+        ></app-rps-hand-view>
+        <app-rps-button-pick-group
+          (pickEvent)="userPickedChoose($event)"
+          [isDisabled]="pickButtonsDisabled"
+        ></app-rps-button-pick-group>
+      </div>
+      <div class="game-area">
+        <app-rps-score [isUser]="false" [scoreValue]="enemyPoints"></app-rps-score>
+        <app-rps-hand-view
+          [isUser]="false"
+          [isWinner]="enemyWinner"
+          [runEnemyAnimation]="runAnimationRight"
+          [pickedImage]="enemyPickImage"
+        ></app-rps-hand-view>
+      </div>
+    </div>
+  </div>
+</div>

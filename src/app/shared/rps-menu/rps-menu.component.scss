@@ -1,0 +1,17 @@
+.game-menu {
+  margin: 0px;
+  padding: 0.5em;
+  background-color: #2d3648;
+  min-height: 3em;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-menu-title {
+  margin-bottom: 0em;
+  margin-top: 0em;
+  font-size: 20px;
+  font-weight: bold;
+}
