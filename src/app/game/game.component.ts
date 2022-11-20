@@ -1,6 +1,7 @@
+import { UserpickResponse } from './model/userpick-response';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { PickElements } from '../choose-elements';
+import { GameRestService } from './rest/game-rest.service';
 
 @Component({
   selector: 'app-game',
@@ -8,7 +9,7 @@ import { PickElements } from '../choose-elements';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService, private restService: GameRestService) {
     this.translate.addLangs(['es', 'en', 'de']);
     this.translate.setDefaultLang('en');
   }
@@ -17,24 +18,13 @@ export class GameComponent implements OnInit {
     this.soundOff = localStorage.getItem('soundValue') === 'off' ? true : false;
   }
 
-  getData() {
-    return localStorage.getItem('myData');
-  }
-
-  userChoose: string = '';
-  enemyChoose: string = '';
   userPoints: number = 0;
   enemyPoints: number = 0;
-
-  resultLabel: string = '';
-  userPickLabel: string = '';
-  userPickImage: string = '../assets/rps/rock-user.png';
-  enemyPickLabel: string = '';
-  enemyPickImage: string = '../assets/rps/rock-enemy.png';
-
   numberOfGames = 0;
-  userScoreValue: number = 0;
+  scoreValue: number = 0;
 
+  userPickImage: string = '../assets/rps/rock-user.png';
+  enemyPickImage: string = '../assets/rps/rock-enemy.png';
   runAnimationLeft: boolean = false;
   runAnimationRight: boolean = false;
 
@@ -42,93 +32,74 @@ export class GameComponent implements OnInit {
   enemyWinner: boolean = false;
 
   soundOff: boolean = true;
-
   pickButtonsDisabled = false;
 
   reset() {
-    this.userChoose = '';
-    this.enemyChoose = '';
     this.userPoints = 0;
     this.enemyPoints = 0;
     this.numberOfGames = 0;
-    this.userScoreValue = 0;
-    this.userPickLabel = '';
+    this.scoreValue = 0;
+    this.resetPickImages();
+    this.resetWinner();
+  }
+
+  resetPickImages() {
     this.userPickImage = '../assets/rps/rock-user.png';
-    this.enemyPickLabel = '';
     this.enemyPickImage = '../assets/rps/rock-enemy.png';
+  }
+  resetAnimations() {
+    this.runAnimationLeft = false;
+    this.runAnimationRight = false;
+  }
+  resetWinner() {
     this.userWinner = false;
     this.enemyWinner = false;
   }
 
-  calculateRandomComputerChoose(): string {
-    let randomIndex = Math.floor(Math.random() * 3);
-    return Object.values(PickElements)[randomIndex].toString();
+  userPickedObjectWinnerCalculator(userPick: string): void {
+    this.restService.userPicked(userPick).subscribe({
+      next: (response) => {
+        this.userPickedChooseAfterAnimation(response);
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete'),
+    });
   }
 
   userPickedChoose(userPick: string) {
-    this.userWinner = false;
-    this.enemyWinner = false;
+    this.resetWinner();
     this.runAnimationLeft = true;
     this.runAnimationRight = true;
-    this.userPickImage = '../assets/rps/rock-user.png';
-    this.enemyPickImage = '../assets/rps/rock-enemy.png';
+    this.resetPickImages();
     if (!this.soundOff) {
       this.playAudioEffect();
     }
 
     this.pickButtonsDisabled = true;
     setTimeout(() => {
-      this.userPickedChooseAfterAnimation(userPick);
+      this.userPickedObjectWinnerCalculator(userPick);
     }, 2000);
   }
 
-  userPickedChooseAfterAnimation(userPick: string) {
-    this.runAnimationLeft = false;
-    this.runAnimationRight = false;
-    let randomPick = this.calculateRandomComputerChoose();
+  userPickedChooseAfterAnimation(userPickResponse: UserpickResponse) {
+    this.resetAnimations();
 
-    const userPickIndex: number = Object.keys(PickElements).indexOf(userPick);
-    const randomPickIndex: number = Object.keys(PickElements).indexOf(randomPick);
+    this.userPickImage = '../assets/rps/' + userPickResponse.userPick + '-user.png';
+    this.enemyPickImage = '../assets/rps/' + userPickResponse.enemyPick + '-enemy.png';
 
-    this.userPickLabel = userPick;
-    this.userPickImage = '../assets/rps/' + userPick + '-user.png';
-    this.enemyPickLabel = randomPick;
-    this.enemyPickImage = '../assets/rps/' + randomPick + '-enemy.png';
-
-    let result = this.doesUserWin(userPick, randomPick);
-    if (result === 1) {
-      this.resultLabel = 'You Win :)';
+    this.resetWinner();
+    if (userPickResponse.userWins) {
       this.numberOfGames++;
       this.userPoints++;
       this.userWinner = true;
-      this.enemyWinner = false;
-    } else if (result === 2) {
-      this.resultLabel = 'You Lose :(';
+    } else if (userPickResponse.enemyWins) {
       this.numberOfGames++;
       this.enemyPoints++;
-      this.userWinner = false;
       this.enemyWinner = true;
-    } else {
-      this.resultLabel = 'Tie :|';
-      this.userWinner = false;
-      this.enemyWinner = false;
     }
 
-    this.userScoreValue = Math.round((this.userPoints * 100) / this.numberOfGames);
-
+    this.scoreValue = Math.round((this.userPoints * 100) / this.numberOfGames);
     this.pickButtonsDisabled = false;
-  }
-
-  doesUserWin(userPick: string, randomPick: string): number {
-    if (userPick === randomPick) return 0;
-    if (
-      (userPick === 'rock' && randomPick === 'scissors') ||
-      (userPick === 'paper' && randomPick === 'rock') ||
-      (userPick === 'scissors' && randomPick === 'paper')
-    )
-      return 1;
-
-    return 2;
   }
 
   playAudioEffect(): void {

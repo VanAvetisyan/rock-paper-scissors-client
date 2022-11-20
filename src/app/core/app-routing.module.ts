@@ -7,6 +7,7 @@ export const routes: Route[] = [
     path: '',
     redirectTo: '',
     pathMatch: 'full',
+    component: GameComponent,
   },
   {
     path: 'game',
