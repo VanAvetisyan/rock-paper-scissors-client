@@ -62,7 +62,7 @@ export class GameComponent implements OnInit {
         this.userPickedChooseAfterAnimation(response);
       },
       error: (e) => console.error(e),
-      complete: () => console.info('complete'),
+      complete: () => {} /*console.info('complete')*/,
     });
   }
 
