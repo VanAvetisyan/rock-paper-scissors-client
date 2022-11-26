@@ -1,3 +1,4 @@
+import { SignInComponent } from './authentication/signin/signin.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -7,10 +8,11 @@ import { ButtonModule } from 'primeng/button';
 import { ImageModule } from 'primeng/image';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToolbarModule } from 'primeng/toolbar';
-import { RpsButtonPickGroupComponent } from './rps-button-pick-group/rps-button-pick-group.component';
-import { RpsScoreComponent } from './rps-score/rps-score.component';
-import { RpsHandViewComponent } from './rps-hand-view/rps-hand-view.component';
-import { RpsMenuComponent } from './rps-menu/rps-menu.component';
+import { ChipModule } from 'primeng/chip';
+import { RpsButtonPickGroupComponent } from './game-components/rps-button-pick-group/rps-button-pick-group.component';
+import { RpsScoreComponent } from './game-components/rps-score/rps-score.component';
+import { RpsHandViewComponent } from './game-components/rps-hand-view/rps-hand-view.component';
+import { RpsMenuComponent } from './game-components/rps-menu/rps-menu.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { RpsMenuComponent } from './rps-menu/rps-menu.component';
     RpsScoreComponent,
     RpsHandViewComponent,
     RpsMenuComponent,
+    SignInComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +30,7 @@ import { RpsMenuComponent } from './rps-menu/rps-menu.component';
     ImageModule,
     ToolbarModule,
     ProgressBarModule,
+    ChipModule,
     HttpClientModule,
   ],
   exports: [
@@ -37,11 +41,13 @@ import { RpsMenuComponent } from './rps-menu/rps-menu.component';
     ImageModule,
     ToolbarModule,
     ProgressBarModule,
+    ChipModule,
     HttpClientModule,
     RpsButtonPickGroupComponent,
     RpsScoreComponent,
     RpsHandViewComponent,
     RpsMenuComponent,
+    SignInComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
