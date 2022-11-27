@@ -1,5 +1,5 @@
 export interface UserpickResponse {
-  userName?: string;
+  userId?: string;
   userPick: string;
   enemyPick: string;
   userWins: boolean;

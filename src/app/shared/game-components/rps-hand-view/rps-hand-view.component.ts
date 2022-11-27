@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./rps-hand-view.component.scss'],
 })
 export class RpsHandViewComponent {
-
   @Input()
   isUser: boolean = false;
 

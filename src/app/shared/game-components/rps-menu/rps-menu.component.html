@@ -1,13 +1,10 @@
 <div class="game-menu">
-  <!--<p class="game-menu-title">
-    {{ 'header.title' | translate }}
-  </p>-->
   <div>
-    <p-button icon="pi pi-refresh" (click)="reset()"></p-button>
+    <p-button id="reset-button" icon="pi pi-refresh" (click)="reset()"></p-button>
   </div>
   <div>
-    <!--<app-signin></app-signin>-->
     <p-button
+      id="sound-button"
       (click)="soundSwitch()"
       [icon]="soundOff ? 'pi pi-volume-off' : 'pi pi-volume-up'"
       [styleClass]="soundOff ? 'p-button-danger' : 'p-button-success'"

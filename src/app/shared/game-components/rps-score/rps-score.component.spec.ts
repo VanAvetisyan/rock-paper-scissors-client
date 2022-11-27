@@ -1,5 +1,5 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RpsScoreComponent } from './rps-score.component';
 
 describe('RpsScoreComponent', () => {
@@ -8,6 +8,7 @@ describe('RpsScoreComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [TranslateModule.forRoot()],
       declarations: [RpsScoreComponent],
     }).compileComponents();
 

@@ -21,7 +21,9 @@ export class SignInComponent implements OnInit {
     public translate: TranslateService
   ) {
     this.languages = ['en', 'es', 'de'];
-    this.selectedLanguage = localStorage.getItem('language');
+    this.selectedLanguage = localStorage.getItem('language')
+      ? localStorage.getItem('language')
+      : 'en';
     this.translate.use(this.selectedLanguage);
   }
 
