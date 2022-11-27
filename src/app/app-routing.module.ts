@@ -1,17 +1,23 @@
-import { GameComponent } from './../game/game.component';
+import { GameComponent } from './game/game.component';
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/authentication/auth/guard/auth.guard';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 export const routes: Route[] = [
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'game',
     pathMatch: 'full',
-    component: GameComponent,
   },
   {
     path: 'game',
     component: GameComponent,
+  },
+  {
+    path: 'user',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
   },
 ];
 

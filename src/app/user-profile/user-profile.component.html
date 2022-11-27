@@ -1,0 +1,27 @@
+<div class="user-profile">
+  <p-card
+    [header]="user.userName"
+    [subheader]="user.userId"
+    [style]="{ width: '360px' }"
+    styleClass="p-card-shadow"
+  >
+    <img
+      style="object-fit: contain; border-radius: 50%"
+      height="150px"
+      width="150px"
+      alt="Card"
+      [src]="user.userImage"
+    />
+    <p>This is your profile information.</p>
+    <ng-template pTemplate="footer">
+      <p-button label="Play" icon="pi pi-check" (click)="play()"></p-button>
+      <p-button
+        label="Logout"
+        icon="pi pi-times"
+        styleClass="p-button-secondary"
+        [style]="{ 'margin-left': '.5em' }"
+        (click)="authService.SignOut()"
+      ></p-button>
+    </ng-template>
+  </p-card>
+</div>

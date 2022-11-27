@@ -1,6 +1,8 @@
 <div class="formGroup">
   <p-chip
     *ngIf="isLoggedIn"
+    class="user-chip"
+    (click)="accessUserProfile()"
     [label]="user.userName"
     [image]="user.userImage"
     styleClass="mr-2"

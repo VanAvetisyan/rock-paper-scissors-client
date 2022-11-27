@@ -10,8 +10,6 @@ import { PickElements } from 'src/app/choose-elements';
 export class RpsButtonPickGroupComponent {
   pickElementsList = PickElements;
 
-  constructor() {}
-
   @Output()
   pickEvent = new EventEmitter<string>();
 
