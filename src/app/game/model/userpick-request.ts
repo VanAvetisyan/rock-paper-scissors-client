@@ -1,4 +1,4 @@
 export interface UserpickRequest {
-  userName: string;
+  userId: string;
   userPick: string;
 }

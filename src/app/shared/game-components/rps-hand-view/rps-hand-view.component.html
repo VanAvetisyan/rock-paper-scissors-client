@@ -1,5 +1,6 @@
 <div class="hand-container">
   <img
+    class="hand-image"
     [ngClass]="{
       winner: isWinner,
       'run-animation-left': runUserAnimation,
@@ -7,6 +8,5 @@
     }"
     [src]="pickedImage"
     height="200px"
-    style="align-self: center"
   />
 </div>
