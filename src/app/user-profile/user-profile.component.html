@@ -11,6 +11,7 @@
       width="150px"
       alt="Card"
       [src]="user.userImage"
+      onerror="this.src='../../assets/user/user.svg';"
     />
     <p>{{ 'user.info' | translate }}</p>
     <ng-template pTemplate="footer">

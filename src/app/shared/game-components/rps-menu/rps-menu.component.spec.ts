@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from '../../shared.module';
 
 import { RpsMenuComponent } from './rps-menu.component';
 
@@ -8,6 +9,7 @@ describe('RpsMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [SharedModule],
       declarations: [RpsMenuComponent],
     }).compileComponents();
 

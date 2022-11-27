@@ -6,7 +6,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./rps-menu.component.scss'],
 })
 export class RpsMenuComponent {
-
   @Output()
   soundSwitchEvent = new EventEmitter<string>();
 
