@@ -2,11 +2,12 @@ import { User } from './../model/user';
 import { Injectable } from '@angular/core';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(public angularFireAuth: AngularFireAuth) {}
+  constructor(private angularFireAuth: AngularFireAuth, private router: Router) {}
 
   GoogleAuth() {
     return this.AuthLogin(new GoogleAuthProvider());
@@ -31,6 +32,8 @@ export class AuthService {
   SignOut() {
     return this.angularFireAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      this.router.navigate(['game']);
+      window.location.reload();
     });
   }
 

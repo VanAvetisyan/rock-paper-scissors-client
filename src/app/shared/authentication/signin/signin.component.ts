@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../model/user';
 @Component({
@@ -7,7 +8,7 @@ import { User } from '../model/user';
   styleUrls: ['./signin.component.scss'],
 })
 export class SignInComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   user: any;
   isLoggedIn: boolean = false;
@@ -27,18 +28,20 @@ export class SignInComponent implements OnInit {
   }
 
   async signIn() {
-    /*this.authService.GoogleAuth();
-    this.isLoggedIn = this.authService.isLoggedIn();*/
     await this.authService.GoogleAuth().then(() => {
       this.userIsLoggedIn();
+      this.router.navigate(['game']);
+      window.location.reload();
     });
   }
 
   async signOut() {
-    /*this.authService.SignOut();
-    this.isLoggedIn = this.authService.isLoggedIn();*/
     await this.authService.SignOut().then(() => {
       this.userIsLoggedIn();
     });
+  }
+
+  accessUserProfile() {
+    this.router.navigate(['user']);
   }
 }

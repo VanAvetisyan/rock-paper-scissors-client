@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./rps-score.component.scss'],
 })
 export class RpsScoreComponent {
-  constructor() {}
 
   @Input()
   isUser: boolean = false;

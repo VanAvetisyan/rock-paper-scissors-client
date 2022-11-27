@@ -9,10 +9,7 @@ import { GameRestService } from './rest/game-rest.service';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  constructor(public translate: TranslateService, private restService: GameRestService) {
-    this.translate.addLangs(['es', 'en', 'de']);
-    this.translate.setDefaultLang('en');
-  }
+  constructor(private restService: GameRestService) {}
 
   ngOnInit(): void {
     this.soundOff = localStorage.getItem('soundValue') === 'off' ? true : false;

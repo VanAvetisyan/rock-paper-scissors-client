@@ -9,6 +9,7 @@ import { ImageModule } from 'primeng/image';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ChipModule } from 'primeng/chip';
+import { CardModule } from 'primeng/card';
 import { RpsButtonPickGroupComponent } from './game-components/rps-button-pick-group/rps-button-pick-group.component';
 import { RpsScoreComponent } from './game-components/rps-score/rps-score.component';
 import { RpsHandViewComponent } from './game-components/rps-hand-view/rps-hand-view.component';
@@ -31,6 +32,7 @@ import { RpsMenuComponent } from './game-components/rps-menu/rps-menu.component'
     ToolbarModule,
     ProgressBarModule,
     ChipModule,
+    CardModule,
     HttpClientModule,
   ],
   exports: [
@@ -42,6 +44,7 @@ import { RpsMenuComponent } from './game-components/rps-menu/rps-menu.component'
     ToolbarModule,
     ProgressBarModule,
     ChipModule,
+    CardModule,
     HttpClientModule,
     RpsButtonPickGroupComponent,
     RpsScoreComponent,
