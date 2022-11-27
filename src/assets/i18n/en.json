@@ -11,5 +11,10 @@
       "user": "User",
       "enemy": "Enemy",
       "score": "Score"
+    },
+    "user": {
+      "info": "This is your profile information.",
+      "play": "Play",
+      "logout": "Logout"
     }
 }

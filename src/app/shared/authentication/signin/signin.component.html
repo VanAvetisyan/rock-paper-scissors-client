@@ -1,4 +1,20 @@
 <div class="formGroup">
+  <span *ngIf="showLanguageSelector" class="p-buttonset">
+    <button
+      *ngFor="let language of languages"
+      pButton
+      pRipple
+      [label]="language.toUpperCase()"
+      (click)="languageSelect(language)"
+    ></button>
+  </span>
+  <button
+    *ngIf="!showLanguageSelector"
+    pButton
+    pRipple
+    [label]="selectedLanguage.toUpperCase()"
+    (click)="showLanguages()"
+  ></button>
   <p-chip
     *ngIf="isLoggedIn"
     class="user-chip"

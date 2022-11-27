@@ -12,11 +12,11 @@
       alt="Card"
       [src]="user.userImage"
     />
-    <p>This is your profile information.</p>
+    <p>{{ 'user.info' | translate }}</p>
     <ng-template pTemplate="footer">
-      <p-button label="Play" icon="pi pi-check" (click)="play()"></p-button>
+      <p-button [label]="'user.play' | translate" icon="pi pi-check" (click)="play()"></p-button>
       <p-button
-        label="Logout"
+        [label]="'user.logout' | translate"
         icon="pi pi-times"
         styleClass="p-button-secondary"
         [style]="{ 'margin-left': '.5em' }"
