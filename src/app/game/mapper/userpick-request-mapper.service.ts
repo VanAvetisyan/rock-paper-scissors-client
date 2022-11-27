@@ -1,19 +1,20 @@
 import { UserpickRequest } from './../model/userpick-request';
 import { Injectable } from '@angular/core';
+import { AuthService } from 'src/app/shared/authentication/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserpickRequestMapperService {
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   map(userPickEntity: String): UserpickRequest {
-    const userIsLoggedIn: boolean = false;
-    const loggedUserName: string = '';
+    const userIsLoggedIn: boolean = this.authService.isLoggedIn();
+    const loggedUserId = userIsLoggedIn ? this.authService.getUser().userId : 'non-logged';
 
     return {
       userPick: userPickEntity,
-      userName: userIsLoggedIn ? loggedUserName : 'non-logged',
+      userId: loggedUserId,
     } as UserpickRequest;
   }
 }

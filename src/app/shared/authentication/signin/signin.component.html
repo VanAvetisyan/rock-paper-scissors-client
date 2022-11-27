@@ -1,16 +1,12 @@
 <div class="formGroup">
-  <p-chip *ngIf="isLoggedIn" [label]="user.userName" [image]="user.userImage" styleClass="mr-2"></p-chip>
-  <p-button *ngIf="!isLoggedIn"
-      (click)="signIn()"
-      icon="pi pi-user"
-      class="user-login-button"
-    >
-    </p-button>
-  <p-button *ngIf="isLoggedIn"
-      (click)="signOut()"
-      icon="pi pi-sign-out"
-      class="user-logout-button"
-    >
-    </p-button>
+  <p-chip
+    *ngIf="isLoggedIn"
+    [label]="user.userName"
+    [image]="user.userImage"
+    styleClass="mr-2"
+  ></p-chip>
+  <p-button *ngIf="!isLoggedIn" (click)="signIn()" icon="pi pi-user" class="user-login-button">
+  </p-button>
+  <p-button *ngIf="isLoggedIn" (click)="signOut()" icon="pi pi-sign-out" class="user-logout-button">
+  </p-button>
 </div>
-
