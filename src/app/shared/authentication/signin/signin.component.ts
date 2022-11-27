@@ -1,17 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../auth/auth.service';
-import { User } from '../model/user';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
 })
 export class SignInComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
-
   user: any;
   isLoggedIn: boolean = false;
+
+  languages: string[] = [];
+  selectedLanguage: any = 'en';
+  showLanguageSelector: boolean = false;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    public translate: TranslateService
+  ) {
+    this.languages = ['en', 'es', 'de'];
+    this.selectedLanguage = localStorage.getItem('language');
+    this.translate.use(this.selectedLanguage);
+  }
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
@@ -43,5 +55,16 @@ export class SignInComponent implements OnInit {
 
   accessUserProfile() {
     this.router.navigate(['user']);
+  }
+
+  languageSelect(language: string) {
+    this.selectedLanguage = language;
+    localStorage.setItem('language', language);
+    this.translate.use(language);
+    this.showLanguages();
+  }
+
+  showLanguages() {
+    this.showLanguageSelector = !this.showLanguageSelector;
   }
 }

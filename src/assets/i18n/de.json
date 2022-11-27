@@ -1,5 +1,20 @@
 {
-    "header": {
-        "title": "Schere, Stein, Papier"
-    }
+  "header": {
+    "title": "Schere Stein Papier"
+  },
+  "buttons": {
+    "rock": "Stein",
+    "paper": "Papier",
+    "scissors": "Schere"
+  },
+  "score": {
+    "user": "Benutzer",
+    "enemy": "Feind",
+    "score": "Punktzahl"
+  },
+  "user": {
+    "info": "Dies sind Ihre Profilinformationen.",
+    "play": "Spielen",
+    "logout": "Ausloggen"
+  }
 }
